@@ -16,10 +16,8 @@ export default class App extends Component {
   render() {
     return (
       <div className="App">
-        <Header /> 
-        <section className="background">
+        <Header />
           <PokeList pokemon={this.state.pokeData} />  
-        </section>
       </div>
     );
   }
