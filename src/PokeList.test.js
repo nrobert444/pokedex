@@ -1,10 +1,10 @@
 import React from 'react';
-import App from './App.js';
+import PokeList from './PokeList.js';
 import renderer from 'react-test-renderer';
 
-it(' App.js renders correctly', () => {
+it(' PokeList.js renders correctly', () => {
   const tree = renderer
-    .create(< App.js />)
+    .create(< PokeList.js />)
     .toJSON();
   expect(tree).toMatchSnapshot();
 });
