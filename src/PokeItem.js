@@ -9,7 +9,7 @@ export default class PokeItem extends Component {
                 <p>Attack Power: {this.props.pokemon.attack}</p>
                 <p>Defense: {this.props.pokemon.defense}</p>
             </div>
-            <div>
+            <div className="img-size">
                 <img
                     src={this.props.pokemon.url_image}
                     alt={this.props.pokemon.url_image} />

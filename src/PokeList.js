@@ -9,7 +9,7 @@ class PokeList extends Component {
             return <PokeItem pokemon={item} key={index}/>
         })
         return (
-            <ul>
+            <ul className = 'poke-wrap'>
                 {pokeList}
             </ul>
         )
