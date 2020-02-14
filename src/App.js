@@ -1,53 +1,39 @@
 import React, { Component } from 'react';
-import './App.css';
 import Header from './Header.js';
+import SearchOptions from './SearchOptions.js';
 import PokeList from './PokeList.js';
-import SearchOptions from "./SearchOptions.js";
-import Paging from "./Paging.js";
-import { getPokeData } from './PokeApi';
-
+import Paging from './Paging.js';
+import getPokemon from './PokemonApi.js'
+//stylesheet
+import './App.css';
 export default class App extends Component {
-  state = { pokeSearch: [] };
-
+  //setting empty state
+  state = { pokeData: [] }
   async loadPokemon() {
-    const response = await getPokeData();
-    console.log(response)
-    const pokeSearch = response.search;
-    const totalResults = response.totalResults;
+    const response = await getPokemon();
+    const pokeData = response.results;
+    const totalResults = response.count;
     this.setState({
-      pokeSearch: pokeSearch,
+      pokeData: pokeData,
       totalResults: totalResults,
-     });
-  }
-
-  async componentDidMount() {
-    await this.loadPokemon();
-
-    window.addEventListener("hashchange", async () => {
-      console.log("change");
-      await this.loadPokemon();
     });
   }
-
-  render() {
-    const { pokeSearch, totalResults } = this.state;
-    return (  
-      <div className="App">
-        <Header />
-        <main>
-        <section>
-          <SearchOptions />
-        </section>
-        <section>
-          <PokeList pokemon={pokeSearch} /> 
-          <Paging totalResults={totalResults} />
-        </section>
-        </main>
-      </div>
-    );
+  async componentDidMount() {
+    await this.loadPokemon();
+    window.addEventListener('hashchange', async () => {
+      await this.loadPokemon();
+    })
   }
+
+render() {
+  const { pokeData, totalResults } = this.state;
+  return (
+    <div>
+      <Header />
+      <SearchOptions />
+      <Paging totalResults={totalResults} />
+      <PokeList pokemon={pokeData} />
+    </div>
+  );
 }
-
-
-
-
+}
