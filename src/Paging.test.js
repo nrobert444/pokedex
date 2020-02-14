@@ -1,10 +1,10 @@
 import React from 'react';
-import App from './App.js';
+import Paging from './Paging.js';
 import renderer from 'react-test-renderer';
 
-it(' App renders correctly', () => {
+it('Paging renders correctly', () => {
   const tree = renderer
-    .create(< App />)
+    .create(< Paging />)
     .toJSON();
   expect(tree).toMatchSnapshot();
 });
